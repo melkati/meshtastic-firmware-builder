@@ -18,9 +18,6 @@ run-name: Build ${{ inputs.variant }}-${{ inputs.firmware_branch }}
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    env:
-      FIRMWARE_ARCHIVE: firmware-${{ inputs.variant }}-${{ inputs.firmware_branch }}.tar.xz
     
     steps:
       - name: Checkout this repository
@@ -51,16 +48,11 @@ jobs:
         working-directory: firmware
         run: |
           pio run -e ${{ inputs.variant }}
-      
-      - name: Create firmware archive
-        run: |
-          cd firmware/.pio/build/${{ inputs.variant }}
-          tar -cJf ${{ env.FIRMWARE_ARCHIVE }} *.bin
 
-      - name: Upload firmware artifact
+      - name: Upload firmware artifacts
         uses: actions/upload-artifact@v6
         with:
-          name: ${{ env.FIRMWARE_ARCHIVE }}
-          path: firmware/.pio/build/${{ inputs.variant }}/${{ env.FIRMWARE_ARCHIVE }}
-          compression-level: 0
+          name: firmware-${{ inputs.variant }}-${{ inputs.firmware_branch }}
+          path: firmware/.pio/build/${{ inputs.variant }}/*.bin
+          compression-level: 9
           if-no-files-found: error
