@@ -53,6 +53,8 @@ jobs:
         uses: actions/upload-artifact@v6
         with:
           name: firmware-${{ inputs.variant }}-${{ inputs.firmware_branch }}
-          path: firmware/.pio/build/${{ inputs.variant }}/*.bin
+          path: |
+            firmware/.pio/build/${{ inputs.variant }}/*.bin
+            firmware/.pio/build/${{ inputs.variant }}/*.uf2
           compression-level: 9
           if-no-files-found: error
