@@ -54,8 +54,4 @@
 #define LR11X0_DIO_AS_RF_SWITCH
 #endif
 
-// Legacy LORA_* defines for compatibility (used by sleep.cpp)
-#define LORA_RESET SX126X_RESET
-#define LORA_DIO1  SX126X_DIO1
-
 #define TCXO_OPTIONAL // make it so that the firmware can try both TCXO and XTAL
