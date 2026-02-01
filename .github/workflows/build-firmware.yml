@@ -44,6 +44,11 @@ jobs:
       - name: Install PlatformIO
         run: pip install --upgrade platformio
       
+      - name: Install platform tools
+        working-directory: firmware
+        run: |
+          pio pkg install --platform --environment ${{ inputs.variant }}
+      
       - name: Build firmware
         working-directory: firmware
         run: |
