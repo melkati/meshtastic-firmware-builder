@@ -1,4 +1,4 @@
-name: Build Firmware
+name: Build Firmware fix-mklittlefs
 
 on:
   workflow_dispatch:
@@ -59,3 +59,4 @@ jobs:
             firmware/.pio/build/${{ inputs.variant }}/*.uf2
           compression-level: 9
           if-no-files-found: error
+
